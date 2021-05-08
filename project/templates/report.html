@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+    </style>
+</head>
+<h3 class="title">
+    Oferta dla pana/pani {{ name }} z dnia {{date}}
+
+</h3>
+<body>
+<table>
+    <tr>
+        <th>Nazwa</th>
+        <th>Rodzaj</th>
+        <th>Cena</th>
+    </tr>
+    <tr>
+        <td>{{machine}}</td>
+        <td>{{type}}</td>
+        <td>{{price}} zl + 23%VAT</td>
+    </tr>
+</table>
+
+<p>{{description}}</p>
+
+</body>
+</html>

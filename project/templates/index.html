@@ -1,0 +1,17 @@
+<!-- templates/index.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+    Witaj w MS ROL
+</h1>
+
+<h2 class="subtitle">
+    <a href="{{ url_for('main.offers') }}" >
+        Kliknij tutaj aby przejrzeć dostępne oferty
+    </a>
+</h2>
+
+
+{% endblock %}
