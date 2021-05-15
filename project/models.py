@@ -1,4 +1,6 @@
 # models.py
+from datetime import datetime
+
 from flask_login import UserMixin
 
 from project import db
@@ -59,3 +61,14 @@ class Offers(db.Model):
 
     def __repr__(self):
         return '%r' % (self.price)
+
+
+
+class Storage(db.Model):
+    __tablename__ = 'storage'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Unicode(64))
+    path = db.Column(db.Unicode(128))
+    type = db.Column(db.Unicode(3))
+    create_date = db.Column(db.DateTime, default=datetime.now)

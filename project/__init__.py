@@ -4,9 +4,11 @@ from flask import Flask, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_admin import Admin, AdminIndexView, expose
+from flask_ckeditor import CKEditor, CKEditorField
 
 db = SQLAlchemy()
-ad = Admin()
+ad = Admin(template_mode='bootstrap4')
+ckeditor = CKEditor()
 
 
 class DashboardView(AdminIndexView):
@@ -29,8 +31,12 @@ def create_app():
 
     db.init_app(app)
 
-    ad.init_app(app, index_view=DashboardView())
+    @app.before_first_request
+    def create_tables():
+        db.create_all()
 
+    ckeditor.init_app(app)
+    ad.init_app(app, index_view=DashboardView())
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
@@ -50,6 +56,5 @@ def create_app():
     # blueprint for non-auth parts of app
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
-
 
     return app
